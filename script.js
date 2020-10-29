@@ -3,12 +3,14 @@ var operationStr, result;
 
 document.querySelector('.clear').addEventListener('click', () => {
     displaySelector.innerHTML = '';
+    calc();
 });
 
 document.querySelector('.backspace').addEventListener('click', backspace);
 
 document.querySelector('.equal').addEventListener('click', () => {
     displaySelector.textContent = result;
+    calc();
 })
 
 document.querySelectorAll('.num').forEach(item => {
@@ -16,6 +18,7 @@ document.querySelectorAll('.num').forEach(item => {
         if (displaySelector.textContent.length >= 12 * 2) return;
 
         displaySelector.innerHTML += document.querySelector('.btn:hover').textContent;
+        calc();
     });
 });
 
@@ -31,14 +34,13 @@ document.querySelectorAll('.op').forEach(item => {
     });
 });
 
-setInterval(calc, 50);
-
 function backspace() {
     if (displaySelector.innerHTML.slice(-7) === '</span>') {
         displaySelector.innerHTML = displaySelector.innerHTML.slice(0, -37);
     } else {
         displaySelector.innerHTML = displaySelector.innerHTML.slice(0, -1);
     }
+    calc();
 }
 
 function calc() {
